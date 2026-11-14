@@ -118,10 +118,11 @@ body {
     color: #94a3b8;
 }
 
-/* Thanh Bộ Lọc & Tìm kiếm nâng cấp */
+/* THANH BỘ LỌC & TÌM KIẾM ĐÃ FIX CHUẨN */
 .filter-container {
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     gap: 20px;
     background-color: rgba(17, 24, 39, 0.95);
     padding: 20px;
@@ -154,6 +155,7 @@ body {
     border-radius: 8px;
     font-size: 0.95em;
     outline: none;
+    width: 100%;
     transition: border-color 0.2s;
 }
 .filter-group select:hover, .filter-group select:focus, .filter-group input:focus {
@@ -166,13 +168,15 @@ body {
     gap: 30px;
 }
 
-/* Product Card */
+/* Product Card Fix Kích Thước Ảnh */
 .product-card {
     background-color: rgba(17, 24, 39, 0.9);
     border: 1px solid #1f2937;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .product-card:hover {
@@ -195,33 +199,19 @@ body {
 .badge.discount { background-color: #f59e0b; }
 .badge.new { background-color: #64748b; }
 
+/* Cố định khung chứa ảnh chính của Card */
 .card-img-box {
-    height: 180px;
-    background: linear-gradient(45deg, #1f2937, #374151);
+    height: 200px;
+    background-color: #000;
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.placeholder-img {
-    text-align: center;
-    color: #94a3b8;
-}
-.placeholder-img i {
-    font-size: 3em;
-    margin-bottom: 10px;
-    color: #38bdf8;
-    display: block;
-}
-.placeholder-img span {
-    font-weight: bold;
-    font-size: 1.1em;
-    color: #e2e8f0;
-}
-
-/* Tùy chỉnh khung nhiều ảnh trên card */
 .multi-img-box {
     position: relative;
-    height: 190px;
+    height: 200px;
     background-color: #000;
     overflow: hidden;
 }
@@ -243,7 +233,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     border: none;
     padding: 8px 12px;
@@ -265,6 +255,9 @@ body {
 
 .card-content {
     padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 .card-content h3 {
     margin: 0 0 5px;
@@ -325,6 +318,7 @@ body {
     list-style: none;
     padding: 0;
     margin: 0 0 20px;
+    flex-grow: 1;
 }
 .features li {
     font-size: 0.9em;
@@ -351,6 +345,7 @@ body {
     border-radius: 8px;
     font-weight: bold;
     font-size: 0.95em;
+    margin-top: auto;
     transition: all 0.2s ease;
     box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
 }
@@ -517,6 +512,113 @@ body {
     line-height: 1.5;
 }
 
+/* GIAO DIỆN CHÍNH SÁCH BẢO HÀNH Ở CUỐI TRANG */
+.policy-section {
+    background-color: rgba(15, 23, 42, 0.95);
+    padding: 60px 20px;
+    border-top: 2px solid #38bdf8;
+    border-bottom: 2px solid #1e293b;
+    margin-top: 50px;
+}
+.policy-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.policy-header h2 {
+    color: #38bdf8;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.policy-subtitle {
+    color: #94a3b8;
+    font-size: 1.1em;
+}
+.policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+.policy-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: space-between;
+}
+.policy-box {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    height: 100%;
+}
+.policy-box h3 {
+    color: #f8fafc;
+    font-size: 1.25em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #1f2937;
+    padding-bottom: 10px;
+}
+.policy-box h3 i {
+    color: #38bdf8;
+}
+.policy-note-sm {
+    font-size: 0.85em;
+    color: #94a3b8;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+.sub-policy {
+    background-color: #1e293b;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    border-left: 4px solid #38bdf8;
+}
+.sub-policy h4 {
+    color: #38bdf8;
+    margin: 0 0 8px 0;
+    font-size: 1em;
+}
+.sub-policy ul {
+    margin: 0;
+    padding-left: 15px;
+    list-style: none;
+}
+.sub-policy li {
+    font-size: 0.9em;
+    color: #cbd5e1;
+    margin-bottom: 5px;
+}
+.warning-box {
+    border-left-color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+}
+.warning-box h4 {
+    color: #f87171;
+}
+.warning-box ul li {
+    color: #cbd5e1;
+}
+.policy-footer-note {
+    font-size: 0.85em;
+    color: #facc15;
+    margin-top: 15px;
+    line-height: 1.5;
+    background-color: rgba(250, 204, 21, 0.05);
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px dashed rgba(250, 204, 21, 0.3);
+}
+
 /* FOOTER */
 footer {
     background-color: #05070c;
@@ -597,132 +699,4 @@ footer {
     font-size: 0.9em;
     color: #64748b;
     line-height: 1.6;
-}
-/* GIAO DIỆN CHÍNH SÁCH BẢO HÀNH Ở CUỐI TRANG */
-.policy-section {
-    background-color: rgba(15, 23, 42, 0.95);
-    padding: 60px 20px;
-    border-top: 2px solid #38bdf8;
-    border-bottom: 2px solid #1e293b;
-    margin-top: 50px;
-}
-.policy-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-.policy-header h2 {
-    color: #38bdf8;
-    font-size: 2.2em;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-.policy-subtitle {
-    color: #94a3b8;
-    font-size: 1.1em;
-}
-.policy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.policy-right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-.policy-box {
-    background-color: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-.policy-box h3 {
-    color: #f8fafc;
-    font-size: 1.25em;
-    margin-top: 0;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid #1f2937;
-    padding-bottom: 10px;
-}
-.policy-box h3 i {
-    color: #38bdf8;
-}
-.policy-note-sm {
-    font-size: 0.85em;
-    color: #94a3b8;
-    margin-bottom: 15px;
-    font-style: italic;
-}
-.sub-policy {
-    background-color: #1e293b;
-    border-radius: 8px;
-    padding: 12px 15px;
-    margin-bottom: 12px;
-    border-left: 4px solid #38bdf8;
-}
-.sub-policy h4 {
-    color: #38bdf8;
-    margin: 0 0 8px 0;
-    font-size: 1em;
-}
-.sub-policy ul {
-    margin: 0;
-    padding-left: 15px;
-    list-style: none;
-}
-.sub-policy li {
-    font-size: 0.9em;
-    color: #cbd5e1;
-    margin-bottom: 5px;
-}
-.warning-box {
-    border-left-color: #ef4444;
-    background-color: rgba(239, 68, 68, 0.1);
-}
-.warning-box h4 {
-    color: #f87171;
-}
-.warning-box p {
-    font-size: 0.9em;
-    color: #cbd5e1;
-    margin: 0;
-}
-.policy-footer-note {
-    font-size: 0.85em;
-    color: #facc15;
-    margin-top: 15px;
-    line-height: 1.5;
-    background-color: rgba(250, 204, 21, 0.05);
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px dashed rgba(250, 204, 21, 0.3);
-}
-/* Đảm bảo style cân đối cho các cột chính sách */
-.policy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: stretch; /* Giúp 2 cột cao bằng nhau, cân xứng hoàn hảo */
-}
-.policy-right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    justify-content: space-between;
-}
-.policy-box {
-    background-color: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    height: 100%;
 }
