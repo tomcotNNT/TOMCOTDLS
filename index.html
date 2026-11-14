@@ -15,11 +15,17 @@
         <span><i class="fa-solid fa-phone"></i> Zalo Hotline: <strong>0385 287 197</strong></span>
     </div>
 
-    <!-- Header / Sảnh chính -->
+    <!-- Header / Sảnh chính (Banner trượt tự động) -->
     <header class="hero">
         <div class="hero-content">
-            <!-- Hiển thị ảnh logo trang trí -->
-            <img src="images/logodls.jpg" alt="Logo Tôm Cọt DLS" class="hero-logo">
+            <!-- Khung banner ngang trượt tự động -->
+            <div class="hero-banner-container">
+                <div class="banner-slider">
+                    <!-- Ảnh 1 (Dùng logodls.jpg hoặc backgrounddls.png luân phiên làm slider) -->
+                    <img src="images/logodls.jpg" alt="Banner DLS 1" class="banner-slide active">
+                    <img src="images/backgrounddls.png" alt="Banner DLS 2" class="banner-slide">
+                </div>
+            </div>
             
             <h1>TÔM CỌT DLS</h1>
             <p class="subtitle">Hệ Thống Cung Cấp Tài Khoản Dream League Soccer Chất Lượng Cao</p>
@@ -122,5 +128,8 @@
         <p>© 2026 <strong>TÔM CỌT DLS</strong>. All rights reserved. Founder & Leader: Nguyễn Ngọc Tâm.</p>
         <p>Liên hệ hợp tác & giao dịch trực tiếp qua Zalo: <span style="color: #00ffcc;">0385 287 197</span></p>
     </footer>
+
+    <!-- Gọi file script.js để chạy hiệu ứng trượt banner -->
+    <script src="script.js"></script>
 </body>
 </html>
