@@ -13,7 +13,95 @@ if (slides.length > 0) {
     setInterval(nextSlide, 3000);
 }
 
-// Xử lý bộ lọc tìm kiếm nâng cấp: Giá, Loại acc và Từ khóa ID / #Hashtag
+// === CƠ SỞ DỮ LIỆU MẪU NÂNG CẤP CẦU THỦ THEO VỊ TRÍ ===
+// (Bạn có thể dễ dàng thay đổi đường dẫn ảnh vào các thư mục tương ứng trên máy)
+const upgradeDatabase = [
+    {
+        position: "CF",
+        name: "Mẫu nâng cấp Tiền đạo cắm (CF - ST)",
+        desc: "Build max tốc độ, sút xa và chọn vị trí",
+        image: "images/upgrades/cf_sample.jpg" // Hoặc link ảnh thực tế của bạn
+    },
+    {
+        position: "CB",
+        name: "Mẫu nâng cấp Trung vệ thép (CB)",
+        desc: "Build max thể lực, chiều cao và tắc bóng",
+        image: "images/upgrades/cb_sample.jpg"
+    },
+    {
+        position: "CM",
+        name: "Mẫu nâng cấp Tiền vệ trung tâm (CM - CDM - CAM)",
+        desc: "Build toàn diện chuyền bóng và thể lực",
+        image: "images/upgrades/cm_sample.jpg"
+    },
+    {
+        position: "GK",
+        name: "Mẫu nâng cấp Thủ môn huyền thoại (GK)",
+        desc: "Tối ưu hóa phản xạ và chiều cao bắt bóng",
+        image: "images/upgrades/gk_sample.jpg"
+    },
+    {
+        position: "LW",
+        name: "Mẫu nâng cấp Tiền đạo cánh tốc độ (LW - RW)",
+        desc: "Build tối đa tốc độ, tăng tốc và tạt bóng",
+        image: "images/upgrades/wing_sample.jpg"
+    }
+];
+
+// Hàm tìm kiếm mẫu nâng cấp theo vị trí
+function searchUpgradePosition() {
+    const query = document.getElementById('positionSearchInput').value.toUpperCase().trim();
+    const grid = document.getElementById('upgradeResultsGrid');
+    
+    if (query === "") {
+        grid.innerHTML = `
+            <div class="no-result-text">
+                <i class="fa-solid fa-hand-pointer"></i>
+                <p>Hãy nhập hoặc chọn vị trí phía trên để hiển thị mẫu nâng cấp cầu thủ tương ứng!</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Lọc các mẫu phù hợp với từ khóa vị trí người chơi nhập
+    const results = upgradeDatabase.filter(item => item.position.includes(query) || item.name.toUpperCase().includes(query));
+
+    if (results.length === 0) {
+        grid.innerHTML = `
+            <div class="no-result-text">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p>Chưa có mẫu nâng cấp cho vị trí <strong>"${query}"</strong> này. Vui lòng thử lại với các vị trí: CF, CB, CM, GK, LW...</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Hiển thị danh sách ảnh mẫu nâng cấp xổ ra
+    let htmlContent = "";
+    results.forEach(item => {
+        htmlContent += `
+            <div class="upgrade-card">
+                <div class="upgrade-card-img">
+                    <img src="${item.image}" alt="${item.name}" onclick="openGallery('UPGRADE', ['${item.image}'])" title="Bấm để xem phóng to ảnh">
+                </div>
+                <div class="upgrade-card-info">
+                    <h4>${item.name}</h4>
+                    <p>Vị trí chuẩn: #${item.position} — ${item.desc}</p>
+                </div>
+            </div>
+        `;
+    });
+
+    grid.innerHTML = htmlContent;
+}
+
+// Hàm bấm nhanh vào các thẻ tag vị trí
+function quickSelectPos(pos) {
+    document.getElementById('positionSearchInput').value = pos;
+    searchUpgradePosition();
+}
+
+// Xử lý bộ lọc tìm kiếm Acc theo Giá và Loại tài khoản
 function filterProducts() {
     const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
     const priceVal = document.getElementById('priceFilter').value;
@@ -29,12 +117,10 @@ function filterProducts() {
         let matchPrice = true;
         let matchType = true;
 
-        // 1. Kiểm tra từ khóa tìm kiếm (ID hoặc #CầuThủ)
         if (searchVal !== '') {
             matchSearch = searchText.includes(searchVal);
         }
 
-        // 2. Kiểm tra điều kiện lọc Giá (5 mức giá)
         if (priceVal === 'under200') {
             matchPrice = price < 200000;
         } else if (priceVal === '200to500') {
@@ -47,14 +133,13 @@ function filterProducts() {
             matchPrice = price > 2000000;
         }
 
-        // 3. Kiểm tra điều kiện lọc Loại Acc
         if (typeVal !== 'all') {
-            matchType = (type === typeVal);
+            // Hỗ trợ check nếu acc thuộc nhiều loại (VD: "coin player")
+            matchType = type.includes(typeVal);
         }
 
-        // Hiển thị hoặc ẩn card phù hợp
         if (matchSearch && matchPrice && matchType) {
-            card.style.display = 'block';
+            card.style.display = 'flex';
         } else {
             card.style.display = 'none';
         }
@@ -118,7 +203,6 @@ function slideGallery(direction) {
     imgs[currentGalleryIndex].classList.add('active');
 }
 
-// Đóng modal khi bấm ra ngoài vùng khung nội dung
 window.onclick = function(event) {
     const modal = document.getElementById('imageModal');
     if (event.target === modal) {

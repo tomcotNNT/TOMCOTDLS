@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <!-- Font Awesome để dùng icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Top Bar thông báo nhanh -->
     <div class="top-bar">
@@ -18,37 +20,65 @@
     <!-- Header / Sảnh chính (Banner trượt tự động) -->
     <header class="hero">
         <div class="hero-content">
-            <!-- Khung banner ngang trượt tự động chuẩn kích thước -->
             <div class="hero-banner-container">
                 <div class="banner-slider">
                     <img src="images/logodls.jpg" alt="Banner DLS 1" class="banner-slide active">
                     <img src="images/backgrounddls.png" alt="Banner DLS 2" class="banner-slide">
                 </div>
             </div>
-            
             <h1>TÔM CỌT DLS</h1>
             <p class="subtitle">Hệ Thống Cung Cấp Tài Khoản Dream League Soccer Chất Lượng Cao</p>
             <div class="hero-btns">
-                <a href="https://zalo.me/0385287197" target="_blank" class="btn-primary"><i class="fa-solid fa-bolt"></i> Liên Hệ Mua Acc Ngay</a>
+                <a href="https://zalo.me/0385287197" target="_blank" class="btn-primary"><i
+                        class="fa-solid fa-bolt"></i> Liên Hệ Mua Acc Ngay</a>
             </div>
         </div>
     </header>
 
-    <!-- Danh sách sản phẩm & Thanh bộ lọc nâng cấp -->
+    <!-- TRA CỨU MẪU NÂNG CẤP CẦU THỦ THEO VỊ TRÍ -->
+    <section class="upgrade-guide-section">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fa-solid fa-chart-line"></i> TRA CỨU MẪU NÂNG CẤP CẦU THỦ</h2>
+                <p>Nhập vị trí cầu thủ (VD: CB, CF, CM, GK, LB, LW...) để xem ngay ảnh mẫu max chỉ số thực tế!</p>
+            </div>
+            <div class="upgrade-search-box">
+                <div class="search-input-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="positionSearchInput" onkeyup="searchUpgradePosition()"
+                        placeholder="Nhập vị trí cần tìm (VD: CB, CF, GK, CM...)">
+                </div>
+                <div class="position-tags">
+                    <span class="pos-tag" onclick="quickSelectPos('CF')">#CF</span>
+                    <span class="pos-tag" onclick="quickSelectPos('CB')">#CB</span>
+                    <span class="pos-tag" onclick="quickSelectPos('CM')">#CM</span>
+                    <span class="pos-tag" onclick="quickSelectPos('GK')">#GK</span>
+                    <span class="pos-tag" onclick="quickSelectPos('LW')">#LW</span>
+                    <span class="pos-tag" onclick="quickSelectPos('RW')">#RW</span>
+                </div>
+            </div>
+            <div class="upgrade-results-grid" id="upgradeResultsGrid">
+                <div class="no-result-text">
+                    <i class="fa-solid fa-hand-pointer"></i>
+                    <p>Hãy nhập hoặc chọn vị trí phía trên để hiển thị mẫu nâng cấp cầu thủ tương ứng!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KHO TÀI KHOẢN DLS NỔI BẬT -->
     <main class="container">
         <div class="section-title">
             <h2><i class="fa-solid fa-fire"></i> KHO TÀI KHOẢN DLS NỔI BẬT</h2>
             <p>Chọn ngay cho mình một đội hình ưng ý để chinh chiến các giải đấu lớn!</p>
         </div>
 
-        <!-- THANH BỘ LỌC & TÌM KIẾM THEO ID / #HASHTAG -->
+        <!-- THANH BỘ LỌC & TÌM KIẾM -->
         <div class="filter-container">
-            <!-- Ô tìm kiếm theo ID hoặc #tên_cầu_thủ -->
             <div class="filter-group search-group">
-                <label><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm nhanh (ID hoặc #CầuThủ):</label>
-                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="VD: 6538 hoặc #MODRIC...">
+                <label><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm nhanh tài khoản (ID hoặc #CầuThủ):</label>
+                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="VD: 615 hoặc #MESSI...">
             </div>
-
             <div class="filter-group">
                 <label><i class="fa-solid fa-filter"></i> Lọc theo giá:</label>
                 <select id="priceFilter" onchange="filterProducts()">
@@ -60,7 +90,6 @@
                     <option value="over2m">Trên 2.000.000đ</option>
                 </select>
             </div>
-
             <div class="filter-group">
                 <label><i class="fa-solid fa-gamepad"></i> Loại tài khoản:</label>
                 <select id="typeFilter" onchange="filterProducts()">
@@ -70,46 +99,90 @@
                 </select>
             </div>
         </div>
-        
+
         <!-- DANH SÁCH ACC -->
         <div class="product-grid" id="productGrid">
-            <!-- Sản phẩm 1: Acc #6538 -->
-            <div class="product-card" data-price="1400000" data-type="coin player" data-search="6538 #modric #essien #isco #perisic #vozinha #cannavaro">
-                <div class="badge hot">SIÊU VIP</div>
-                <div class="card-img-box multi-img-box" id="slider-6538">
-                    <img src="images/6538/6538.1.png" alt="Acc 6538 - Ảnh chính" class="acc-slide active">
-                    <img src="images/6538/6538.2.png" alt="Acc 6538 - Ảnh 2" class="acc-slide">
-                    <img src="images/6538/6538.3.png" alt="Acc 6538 - Ảnh 3" class="acc-slide">
-                    <img src="images/6538/6538.0.png" alt="Acc 6538 - Ảnh 4" class="acc-slide">
-                    <button class="slide-btn prev-btn" onclick="changeCardSlide('6538', -1)">&#10094;</button>
-                    <button class="slide-btn next-btn" onclick="changeCardSlide('6538', 1)">&#10095;</button>
+
+            <!-- ACC #615 (Có 7 ảnh: từ 615.1.png đến 615.7.png) -->
+            <div class="product-card" data-price="230000" data-type="player"
+                data-search="615 #pedro #essien #petit #doku #trossard">
+                <div class="badge new">HOT</div>
+                <div class="card-img-box multi-img-box" id="slider-615">
+                    <img src="images/615/615.1.png" alt="Acc 615 - Ảnh 1" class="acc-slide active">
+                    <img src="images/615/615.2.png" alt="Acc 615 - Ảnh 2" class="acc-slide">
+                    <img src="images/615/615.3.png" alt="Acc 615 - Ảnh 3" class="acc-slide">
+                    <img src="images/615/615.4.png" alt="Acc 615 - Ảnh 4" class="acc-slide">
+                    <img src="images/615/615.5.png" alt="Acc 615 - Ảnh 5" class="acc-slide">
+                    <img src="images/615/615.6.png" alt="Acc 615 - Ảnh 6" class="acc-slide">
+                    <img src="images/615/615.7.png" alt="Acc 615 - Ảnh 7" class="acc-slide">
+                    <button class="slide-btn prev-btn" onclick="changeCardSlide('615', -1)">&#10094;</button>
+                    <button class="slide-btn next-btn" onclick="changeCardSlide('615', 1)">&#10095;</button>
                 </div>
                 <div class="card-content">
-                    <h3>Acc Full Đen - Sẵn 20k Kim Cương & 350k Vàng</h3>
-                    <p class="acc-id">ID: #6538</p>
-                    <p class="price">1.400.000 VNĐ</p>
-                    <p class="status status-code">CHƯA BÁN - SẴN CODE</p>
+                    <h3>Đội Tuyển Quốc Gia Bỉ</h3>
+                    <p class="acc-id">ID: #615</p>
+                    <p class="price">230.000 VNĐ</p>
+                    <p class="status status-code">CÒN ACC - SẴN CODE</p>
                     <div class="hashtag-container">
-                        <span class="tag">#MODRIC</span>
+                        <span class="tag">#PEDRO</span>
                         <span class="tag">#ESSIEN</span>
-                        <span class="tag">#ISCO</span>
-                        <span class="tag">#PERISIC</span>
-                        <span class="tag">#VOZINHA</span>
-                        <span class="tag">#CANNAVARO</span>
+                        <span class="tag">#PETIT</span>
+                        <span class="tag">#DOKU</span>
+                        <span class="tag">#TROSSARD</span>
                     </div>
                     <ul class="features">
-                        <li><i class="fa-solid fa-check"></i> Sẵn 20.000 Kim Cương & 350.000 Vàng</li>
-                        <li><i class="fa-solid fa-check"></i> Sẵn dàn cầu thủ huyền thoại cực chất</li>
-                        <li><i class="fa-solid fa-check"></i> Vừa là acc tài nguyên, vừa sẵn cầu thủ</li>
+                        <li><i class="fa-solid fa-check"></i> Đội hình tuyển Bỉ chất lượng</li>
+                        <li><i class="fa-solid fa-check"></i> Tài khoản trắng thông tin, sẵn code</li>
                     </ul>
-                    <button class="detail-btn" onclick="openGallery('6538', ['images/6538/6538.1.png', 'images/6538/6538.2.png', 'images/6538/6538.3.png', 'images/6538/6538.0.png'])">
+                    <button class="detail-btn"
+                        onclick="openGallery('615', ['images/615/615.1.png', 'images/615/615.2.png', 'images/615/615.3.png', 'images/615/615.4.png', 'images/615/615.5.png', 'images/615/615.6.png', 'images/615/615.7.png'])">
                         <i class="fa-solid fa-images"></i> THÔNG TIN CHI TIẾT ACC
                     </button>
                 </div>
             </div>
 
-            <!-- Sản phẩm 2: Acc #5648 -->
-            <div class="product-card" data-price="1300000" data-type="player" data-search="5648 #ronaldo #messi #neymar #coutinho #griezman">
+            <!-- ACC #1633 (Có 8 ảnh: từ 1633.1.png đến 1633.8.png) -->
+            <div class="product-card" data-price="699000" data-type="player"
+                data-search="1633 #trezeguet #batistuta #yamal #walker #james">
+                <div class="badge discount">VIP</div>
+                <div class="card-img-box multi-img-box" id="slider-1633">
+                    <img src="images/1633/1633.1.png" alt="Acc 1633 - Ảnh 1" class="acc-slide active">
+                    <img src="images/1633/1633.2.png" alt="Acc 1633 - Ảnh 2" class="acc-slide">
+                    <img src="images/1633/1633.3.png" alt="Acc 1633 - Ảnh 3" class="acc-slide">
+                    <img src="images/1633/1633.4.png" alt="Acc 1633 - Ảnh 4" class="acc-slide">
+                    <img src="images/1633/1633.5.png" alt="Acc 1633 - Ảnh 5" class="acc-slide">
+                    <img src="images/1633/1633.6.png" alt="Acc 1633 - Ảnh 6" class="acc-slide">
+                    <img src="images/1633/1633.7.png" alt="Acc 1633 - Ảnh 7" class="acc-slide">
+                    <img src="images/1633/1633.8.png" alt="Acc 1633 - Ảnh 8" class="acc-slide">
+                    <button class="slide-btn prev-btn" onclick="changeCardSlide('1633', -1)">&#10094;</button>
+                    <button class="slide-btn next-btn" onclick="changeCardSlide('1633', 1)">&#10095;</button>
+                </div>
+                <div class="card-content">
+                    <h3>Acc Nhiều Thẻ Màu: Huyền Thoại / World Cup...</h3>
+                    <p class="acc-id">ID: #1633</p>
+                    <p class="price">699.000 VNĐ</p>
+                    <p class="status status-code">CÒN ACC - SẴN CODE</p>
+                    <div class="hashtag-container">
+                        <span class="tag">#TREZEGUET</span>
+                        <span class="tag">#BATISTUTA</span>
+                        <span class="tag">#YAMAL</span>
+                        <span class="tag">#WALKER</span>
+                        <span class="tag">#JAMES</span>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fa-solid fa-check"></i> Nhiều thẻ màu độc đáo, huyền thoại WC</li>
+                        <li><i class="fa-solid fa-check"></i> Tài khoản sẵn code bảo mật</li>
+                    </ul>
+                    <button class="detail-btn"
+                        onclick="openGallery('1633', ['images/1633/1633.1.png', 'images/1633/1633.2.png', 'images/1633/1633.3.png', 'images/1633/1633.4.png', 'images/1633/1633.5.png', 'images/1633/1633.6.png', 'images/1633/1633.7.png', 'images/1633/1633.8.png'])">
+                        <i class="fa-solid fa-images"></i> THÔNG TIN CHI TIẾT ACC
+                    </button>
+                </div>
+            </div>
+
+            <!-- ACC #5648 (Có 5 ảnh: 5648.1 đến 5648.3 và 5648.6, 5648.0) -->
+            <div class="product-card" data-price="1300000" data-type="player"
+                data-search="5648 #ronaldo #messi #neymar #coutinho #griezman">
                 <div class="badge discount">SIÊU VIP</div>
                 <div class="card-img-box multi-img-box" id="slider-5648">
                     <img src="images/5648/5648.1.png" alt="Acc 5648 - Ảnh chính" class="acc-slide active">
@@ -135,22 +208,143 @@
                     <ul class="features">
                         <li><i class="fa-solid fa-check"></i> Đội hình full đen huyền thoại đời cũ</li>
                         <li><i class="fa-solid fa-check"></i> Sẵn Gmail bảo mật an toàn 100%</li>
-                        <li><i class="fa-solid fa-check"></i> Acc sưu tầm đỉnh cao cho dân chơi DLS</li>
                     </ul>
-                    <button class="detail-btn" onclick="openGallery('5648', ['images/5648/5648.1.png', 'images/5648/5648.2.png', 'images/5648/5648.3.png', 'images/5648/5648.6.png', 'images/5648/5648.0.png'])">
+                    <button class="detail-btn"
+                        onclick="openGallery('5648', ['images/5648/5648.1.png', 'images/5648/5648.2.png', 'images/5648/5648.3.png', 'images/5648/5648.6.png', 'images/5648/5648.0.png'])">
                         <i class="fa-solid fa-images"></i> THÔNG TIN CHI TIẾT ACC
                     </button>
                 </div>
             </div>
 
-            <!-- Sản phẩm 3: Acc #9425 -->
-            <div class="product-card" data-price="170000" data-type="player" data-search="9425 #degea #cannavaro #williams #petit">
+            <!-- ACC #6538 (Có 4 ảnh: 6538.1 đến 6538.3 và 6538.0) -->
+            <div class="product-card" data-price="1400000" data-type="coin player"
+                data-search="6538 #modric #essien #isco #perisic #vozinha #cannavaro">
+                <div class="badge hot">SIÊU VIP</div>
+                <div class="card-img-box multi-img-box" id="slider-6538">
+                    <img src="images/6538/6538.1.png" alt="Acc 6538 - Ảnh chính" class="acc-slide active">
+                    <img src="images/6538/6538.2.png" alt="Acc 6538 - Ảnh 2" class="acc-slide">
+                    <img src="images/6538/6538.3.png" alt="Acc 6538 - Ảnh 3" class="acc-slide">
+                    <img src="images/6538/6538.0.png" alt="Acc 6538 - Ảnh 4" class="acc-slide">
+                    <button class="slide-btn prev-btn" onclick="changeCardSlide('6538', -1)">&#10094;</button>
+                    <button class="slide-btn next-btn" onclick="changeCardSlide('6538', 1)">&#10095;</button>
+                </div>
+                <div class="card-content">
+                    <h3>Acc Full Đen - Sẵn 20k Kim Cương & 350k Vàng</h3>
+                    <p class="acc-id">ID: #6538</p>
+                    <p class="price">1.400.000 VNĐ</p>
+                    <p class="status status-code">CHƯA BÁN - SẴN CODE</p>
+                    <div class="hashtag-container">
+                        <span class="tag">#MODRIC</span>
+                        <span class="tag">#ESSIEN</span>
+                        <span class="tag">#ISCO</span>
+                        <span class="tag">#PERISIC</span>
+                        <span class="tag">#VOZINHA</span>
+                        <span class="tag">#CANNAVARO</span>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fa-solid fa-check"></i> Sẵn 20.000 Kim Cương & 350.000 Vàng</li>
+                        <li><i class="fa-solid fa-check"></i> Vừa là acc tài nguyên, vừa sẵn cầu thủ</li>
+                    </ul>
+                    <button class="detail-btn"
+                        onclick="openGallery('6538', ['images/6538/6538.1.png', 'images/6538/6538.2.png', 'images/6538/6538.3.png', 'images/6538/6538.0.png'])">
+                        <i class="fa-solid fa-images"></i> THÔNG TIN CHI TIẾT ACC
+                    </button>
+                </div>
+            </div>
+
+         <!-- Sản phẩm: Acc #6280 -->
+            <div class="product-card" data-price="888000" data-type="coin player" data-search="6280 #ronaldo #bale #pogba #james #pepe #cannavaro">
+                <div class="badge hot">SIÊU VIP</div>
+                
+                <div class="card-img-box multi-img-box" id="slider-6280">
+                    <img src="images/6280/6280.1.png" alt="Acc 6280 - Ảnh chính" class="acc-slide active">
+                    <img src="images/6280/Ảnh chụp màn hình 2026-11-15 105555.png" alt="Acc 6280 - Ảnh 2" class="acc-slide">
+                    <img src="images/6280/Ảnh chụp màn hình 2026-11-15 105559.png" alt="Acc 6280 - Ảnh 3" class="acc-slide">
+                    <img src="images/6280/Ảnh chụp màn hình 2026-11-15 105603.png" alt="Acc 6280 - Ảnh 4" class="acc-slide">
+                    <img src="images/6280/Ảnh chụp màn hình 2026-11-15 105613.png" alt="Acc 6280 - Ảnh 5" class="acc-slide">
+                    <img src="images/6280/Ảnh chụp màn hình 2026-11-15 105620.png" alt="Acc 6280 - Ảnh 6" class="acc-slide">
+                    
+                    <button class="slide-btn prev-btn" onclick="changeCardSlide('6280', -1)">&#10094;</button>
+                    <button class="slide-btn next-btn" onclick="changeCardSlide('6280', 1)">&#10095;</button>
+                </div>
+
+                <div class="card-content">
+                    <h3>Acc Real Madrid 2017 - Pogba World Cup</h3>
+                    <p class="acc-id">ID: #6280</p>
+                    <p class="price">888.000 VNĐ</p>
+                    <p class="status status-code">CHƯA BÁN - SẴN CODE</p>
+                    
+                    <div class="hashtag-container">
+                        <span class="tag">#RONALDO</span>
+                        <span class="tag">#BALE</span>
+                        <span class="tag">#POGBA</span>
+                        <span class="tag">#JAMES</span>
+                        <span class="tag">#PEPE</span>
+                        <span class="tag">#CANNAVARO</span>
+                    </div>
+
+                    <ul class="features">
+                        <li><i class="fa-solid fa-check"></i> Đội hình Real 2017 - Nhiều cầu thủ hiếm</li>
+                        <li><i class="fa-solid fa-check"></i> Nhiều cầu thủ chất lượng cao</li>
+                    </ul>
+
+                    <button class="detail-btn" onclick="openGallery('6280', [
+                        'images/6280/6280.1.png', 
+                        'images/6280/Ảnh chụp màn hình 2026-11-15 105555.png', 
+                        'images/6280/Ảnh chụp màn hình 2026-11-15 105559.png', 
+                        'images/6280/Ảnh chụp màn hình 2026-11-15 105603.png', 
+                        'images/6280/Ảnh chụp màn hình 2026-11-15 105613.png', 
+                        'images/6280/Ảnh chụp màn hình 2026-11-15 105620.png'
+                    ])">
+                        <i class="fa-solid fa-images"></i> THÔNG TIN CHI TIẾT ACC
+                    </button>
+                </div>
+            </div>
+
+            <!-- ACC #7624 (Có 5 ảnh: từ 7624.1.png đến 7624.5.png) -->
+            <div class="product-card" data-price="1888000" data-type="player"
+                data-search="7624 #messi #ronaldo #pogba #ezo #petit">
+                <div class="badge hot">SIÊU VIP</div>
+                <div class="card-img-box multi-img-box" id="slider-7624">
+                    <img src="images/7624/7624.1.png" alt="Acc 7624 - Ảnh 1" class="acc-slide active">
+                    <img src="images/7624/7624.2.png" alt="Acc 7624 - Ảnh 2" class="acc-slide">
+                    <img src="images/7624/7624.3.png" alt="Acc 7624 - Ảnh 3" class="acc-slide">
+                    <img src="images/7624/7624.4.png" alt="Acc 7624 - Ảnh 4" class="acc-slide">
+                    <img src="images/7624/7624.5.png" alt="Acc 7624 - Ảnh 5" class="acc-slide">
+                    <button class="slide-btn prev-btn" onclick="changeCardSlide('7624', -1)">&#10094;</button>
+                    <button class="slide-btn next-btn" onclick="changeCardSlide('7624', 1)">&#10095;</button>
+                </div>
+                <div class="card-content">
+                    <h3>Song Sát Messi - Ronaldo Bản World Cup</h3>
+                    <p class="acc-id">ID: #7624</p>
+                    <p class="price">1.888.000 VNĐ</p>
+                    <p class="status status-code">CÒN ACC - SẴN CODE</p>
+                    <div class="hashtag-container">
+                        <span class="tag">#MESSI</span>
+                        <span class="tag">#RONALDO</span>
+                        <span class="tag">#POGBA</span>
+                        <span class="tag">#EZO</span>
+                        <span class="tag">#PETIT</span>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fa-solid fa-check"></i> Song sát huyền thoại Messi - Ronaldo WC</li>
+                        <li><i class="fa-solid fa-check"></i> Tài khoản VIP hiếm có khó tìm</li>
+                    </ul>
+                    <button class="detail-btn"
+                        onclick="openGallery('7624', ['images/7624/7624.1.png', 'images/7624/7624.2.png', 'images/7624/7624.3.png', 'images/7624/7624.4.png', 'images/7624/7624.5.png'])">
+                        <i class="fa-solid fa-images"></i> THÔNG TIN CHI TIẾT ACC
+                    </button>
+                </div>
+            </div>
+
+            <!-- ACC #9425 (Dùng định dạng .jpg như trước) -->
+            <div class="product-card" data-price="170000" data-type="player"
+                data-search="9425 #degea #cannavaro #williams #petit">
                 <div class="badge new">HOT VIP</div>
                 <div class="card-img-box multi-img-box" id="slider-9425">
                     <img src="images/9425/9425.1.jpg" alt="Acc 9425 - Ảnh 1" class="acc-slide active">
                     <img src="images/9425/9425.0.jpg" alt="Acc 9425 - Ảnh 2" class="acc-slide">
                     <img src="images/9425/9425.2.jpg" alt="Acc 9425 - Ảnh 3" class="acc-slide">
-                    <img src="images/9425/9425.3.jpg" alt="Acc 9425 - Ảnh 4" class="acc-slide">
                     <button class="slide-btn prev-btn" onclick="changeCardSlide('9425', -1)">&#10094;</button>
                     <button class="slide-btn next-btn" onclick="changeCardSlide('9425', 1)">&#10095;</button>
                 </div>
@@ -168,30 +362,27 @@
                     <ul class="features">
                         <li><i class="fa-solid fa-check"></i> Đội hình full cầu thủ ngon</li>
                         <li><i class="fa-solid fa-check"></i> Sẵn Gmail bảo mật, an toàn</li>
-                        <li><i class="fa-solid fa-check"></i> Sẵn sàng chiến đấu các giải đấu</li>
                     </ul>
-                    <button class="detail-btn" onclick="openGallery('9425', ['images/9425/9425.1.jpg', 'images/9425/9425.0.jpg', 'images/9425/9425.2.jpg', 'images/9425/9425.3.jpg'])">
+                    <button class="detail-btn"
+                        onclick="openGallery('9425', ['images/9425/9425.1.jpg', 'images/9425/9425.0.jpg', 'images/9425/9425.2.jpg'])">
                         <i class="fa-solid fa-images"></i> THÔNG TIN CHI TIẾT ACC
                     </button>
                 </div>
             </div>
+
         </div>
     </main>
 
-    <!-- KHUNG MODAL XEM TẤT CẢ ẢNH ACC (TRƯỢT NGANG) -->
+    <!-- MODAL XEM ẢNH NGANG -->
     <div id="imageModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="closeGallery()">&times;</span>
             <h3><i class="fa-solid fa-images"></i> BỘ SƯU TẬP ẢNH TÀI KHOẢN (<span id="modalAccId"></span>)</h3>
-            
             <div class="gallery-slider-container">
                 <button class="gallery-nav-btn prev-gallery" onclick="slideGallery(-1)">&#10094;</button>
-                <div class="gallery-images-wrapper" id="galleryImagesWrapper">
-                    <!-- Ảnh nạp tự động bằng JS -->
-                </div>
+                <div class="gallery-images-wrapper" id="galleryImagesWrapper"></div>
                 <button class="gallery-nav-btn next-gallery" onclick="slideGallery(1)">&#10095;</button>
             </div>
-
             <div class="modal-footer-action">
                 <a href="https://zalo.me/0385287197" target="_blank" class="btn-buy-modal">
                     <i class="fa-solid fa-cart-shopping"></i> MUA NGAY QUA ZALO (0385 287 197)
@@ -200,68 +391,72 @@
         </div>
     </div>
 
-    <!-- CHÍNH SÁCH BẢO HÀNH & HỖ TRỢ KHÁCH HÀNG -->
+    <!-- CHÍNH SÁCH BẢO HÀNH -->
     <section class="policy-section">
         <div class="container">
             <div class="policy-header">
                 <h2><i class="fa-solid fa-shield-heart"></i> Chính sách Bảo hành & Hỗ trợ khách hàng</h2>
-                <p class="policy-subtitle">TÔM CỌT D.L.S ❤️ — Mất lòng trước, được lòng sau. Minh bạch chính sách để tuyệt đối yên tâm giao dịch! ✅</p>
+                <p class="policy-subtitle">TÔM CỌT D.L.S ❤️ — Mất lòng trước, được lòng sau. Minh bạch chính sách để
+                    tuyệt đối yên tâm giao dịch! ✅</p>
             </div>
-
             <div class="policy-grid">
-                <!-- Cột trái: Chính sách Bảo hành Back/Ban -->
                 <div class="policy-box">
                     <h3><i class="fa-solid fa-triangle-exclamation"></i> Chính Sách Bảo Hành Back / Ban Acc</h3>
-                    <p class="policy-note-sm">(Do tính bảo mật của game DLS, chính sách áp dụng rõ ràng các điều kiện sau):</p>
-                    
+                    <p class="policy-note-sm">(Do tính bảo mật của game DLS, chính sách áp dụng rõ ràng các điều kiện
+                        sau):</p>
                     <div class="sub-policy">
                         <h4>❤️ Bảo hiểm 70% giá trị acc:</h4>
                         <ul>
                             <li><i class="fa-solid fa-check"></i> Giữ liên kết gốc</li>
                             <li><i class="fa-solid fa-check"></i> ID bị kick trùng với ID lúc mua</li>
                             <li><i class="fa-solid fa-check"></i> Có ảnh thiết bị lạ đăng nhập</li>
-                            <li><i class="fa-solid fa-check"></i> Không cày vàng / tự treo vàng, không đổi chủ <strong>(Áp dụng trong 3 tháng)</strong></li>
+                            <li><i class="fa-solid fa-check"></i> Không cày vàng / tự treo vàng, không đổi chủ
+                                <strong>(Áp dụng trong 3 tháng)</strong>
+                            </li>
                         </ul>
                     </div>
-
                     <div class="sub-policy">
                         <h4>❤️ Bảo hiểm 30% giá trị acc:</h4>
                         <ul>
                             <li><i class="fa-solid fa-check"></i> Acc trùng ID nhưng đã bị reset</li>
-                            <li><i class="fa-solid fa-check"></i> Acc đã qua 1 đời chủ (Shop → Bạn → Người khác) <strong>(Áp dụng trong 6 tháng)</strong></li>
+                            <li><i class="fa-solid fa-check"></i> Acc đã qua 1 đời chủ (Shop → Bạn → Người khác)
+                                <strong>(Áp dụng trong 6 tháng)</strong>
+                            </li>
                         </ul>
                     </div>
-
                     <div class="sub-policy warning-box">
                         <h4>❌ Từ chối bảo hành khi:</h4>
                         <ul>
                             <li><i class="fa-solid fa-xmark"></i> Acc mang đi treo / cày vàng</li>
                             <li><i class="fa-solid fa-xmark"></i> Acc dùng tool Hack, cheat</li>
-                            <li><i class="fa-solid fa-xmark"></i> Acc đã đổi chủ thêm 1 lần (Shop → Bạn → Người khác → Người thứ 2)</li>
+                            <li><i class="fa-solid fa-xmark"></i> Acc đã đổi chủ thêm 1 lần</li>
                             <li><i class="fa-solid fa-xmark"></i> Acc không giữ liên kết, không trùng ID</li>
                         </ul>
                     </div>
-
-                    <p class="policy-footer-note">💡 Phát hiện diễn back chuộc lợi sẽ từ chối giao dịch. Nếu không thống nhất phương án → Chuyển 100% giá trị vào quỹ từ thiện MTTQ VN 🇻🇳❤️.</p>
+                    <p class="policy-footer-note">💡 Phát hiện diễn back chuộc lợi sẽ từ chối giao dịch. Nếu không thống
+                        nhất phương án → Chuyển 100% giá trị vào quỹ từ thiện MTTQ VN 🇻🇳❤️.</p>
                 </div>
-
-                <!-- Cột phải: Chính sách Thu lại & Dân buôn -->
                 <div class="policy-right-column">
                     <div class="policy-box">
                         <h3><i class="fa-solid fa-hand-holding-dollar"></i> Chính Sách Thu Lại Acc</h3>
                         <ul class="features">
-                            <li><i class="fa-solid fa-check"></i> <strong style="color: #38bdf8;">60% giá trị acc:</strong> Giữ nguyên tài nguyên (vàng, KC, sân, thẻ nâng cấp) & số lượng cầu thủ + Hóa đơn mua trong 15 ngày.</li>
-                            <li><i class="fa-solid fa-check"></i> <strong style="color: #38bdf8;">40% - 50% giá trị acc:</strong> Tài nguyên & số lượng cầu thủ thay đổi chút ít + Hóa đơn trong 2 tháng gần nhất.</li>
+                            <li><i class="fa-solid fa-check"></i> <strong style="color: #38bdf8;">60% giá trị
+                                    acc:</strong> Giữ nguyên tài nguyên & số lượng cầu thủ + Hóa đơn mua trong 15 ngày.
+                            </li>
+                            <li><i class="fa-solid fa-check"></i> <strong style="color: #38bdf8;">40% - 50% giá trị
+                                    acc:</strong> Tài nguyên thay đổi chút ít + Hóa đơn trong 2 tháng gần nhất.</li>
                         </ul>
-                        <p class="policy-note-sm" style="margin-top: 15px;">*** Lưu ý: Tùy trường hợp chi tiết, có thể từ chối thu lại hoặc áp dụng mức giá thấp hơn.</p>
+                        <p class="policy-note-sm" style="margin-top: 15px;">*** Lưu ý: Tùy trường hợp chi tiết, có thể
+                            từ chối thu lại hoặc áp dụng mức giá thấp hơn.</p>
                     </div>
-
                     <div class="policy-box">
                         <h3><i class="fa-solid fa-handshake-angle"></i> Chính Sách Riêng Cho Dân Buôn</h3>
                         <ul class="features">
                             <li><i class="fa-solid fa-arrow-right"></i> Shop → Dân buôn: <strong>Hoàn 90%</strong></li>
-                            <li><i class="fa-solid fa-arrow-right"></i> Shop → Dân buôn → Khách 1: <strong>Hoàn 60%</strong></li>
-                            <li><i class="fa-solid fa-arrow-right"></i> Shop → Dân buôn → Khách 1 → Khách 2: <strong>Hỗ trợ 0% đến 20%</strong> (Hết trách nhiệm).</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Shop → Dân buôn → Khách 1: <strong>Hoàn
+                                    60%</strong></li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Shop → Dân buôn → Khách 1 → Khách 2: <strong>Hỗ
+                                    trợ 0% đến 20%</strong></li>
                         </ul>
                     </div>
                 </div>
@@ -269,33 +464,38 @@
         </div>
     </section>
 
-    <!-- Footer / Kênh liên kết & Cộng đồng chính thức -->
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <h3>🌐 KÊNH THÔNG TIN & CỘNG ĐỒNG CHÍNH THỨC</h3>
-            <p class="footer-desc">Kết nối ngay với chúng tôi để tham gia giao dịch, check uy tín và cập nhật acc mới mỗi ngày!</p>
-            
+            <p class="footer-desc">Kết nối ngay với chúng tôi để tham gia giao dịch, check uy tín và cập nhật acc mới
+                mỗi ngày!</p>
             <div class="footer-links-grid">
                 <div class="footer-card-box">
                     <h4><i class="fa-solid fa-store"></i> Nhóm Zalo Mua Bán Acc</h4>
-                    <a href="https://zalo.me/g/p1mgibbsgji3sze5sder" target="_blank" class="footer-link-btn">Tham gia Nhóm 1</a>
+                    <a href="https://zalo.me/g/p1mgibbsgji3sze5sder" target="_blank" class="footer-link-btn">Tham gia
+                        Nhóm 1</a>
                     <a href="https://zalo.me/g/hlikor807" target="_blank" class="footer-link-btn">Tham gia Nhóm 2</a>
                 </div>
                 <div class="footer-card-box">
                     <h4><i class="fa-solid fa-users"></i> Cộng Đồng Giao Lưu</h4>
-                    <a href="https://zalo.me/g/pfdvvs121" target="_blank" class="footer-link-btn">Tham gia Group Zalo</a>
+                    <a href="https://zalo.me/g/pfdvvs121" target="_blank" class="footer-link-btn">Tham gia Group
+                        Zalo</a>
                 </div>
                 <div class="footer-card-box">
                     <h4><i class="fa-solid fa-shield-check"></i> Xác Thực & Uy Tín</h4>
-                    <a href="https://www.facebook.com/profile.php?id=61593176262692" target="_blank" class="footer-link-btn fb-btn"><i class="fa-brands fa-facebook"></i> Facebook Cá Nhân</a>
-                    <a href="https://www.facebook.com/share/p/18vqzEha5H/" target="_blank" class="footer-link-btn check-btn"><i class="fa-solid fa-square-check"></i> Bài Đăng Check Uy Tín</a>
+                    <a href="https://www.facebook.com/profile.php?id=61593176262692" target="_blank"
+                        class="footer-link-btn fb-btn"><i class="fa-brands fa-facebook"></i> Facebook Cá Nhân</a>
+                    <a href="https://www.facebook.com/share/p/18vqzEha5H/" target="_blank"
+                        class="footer-link-btn check-btn"><i class="fa-solid fa-square-check"></i> Bài Đăng Check Uy
+                        Tín</a>
                 </div>
                 <div class="footer-card-box">
                     <h4><i class="fa-solid fa-globe"></i> Website Hệ Thống</h4>
-                    <a href="https://tomcotnnt.github.io/TOMCOTDLS/" target="_blank" class="footer-link-btn web-btn"><i class="fa-solid fa-house-laptop"></i> Trang Chủ Shop DLS</a>
+                    <a href="https://tomcotnnt.github.io/TOMCOTDLS/" target="_blank" class="footer-link-btn web-btn"><i
+                            class="fa-solid fa-house-laptop"></i> Trang Chủ Shop DLS</a>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>© 2026 <strong>TÔM CỌT DLS</strong>. All rights reserved. Founder & Leader: Nguyễn Ngọc Tâm.</p>
                 <p>Hotline / Zalo hỗ trợ trực tiếp: <span style="color: #00ffcc;">0385 287 197</span></p>
@@ -305,4 +505,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
