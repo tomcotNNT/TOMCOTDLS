@@ -1,26 +1,40 @@
-// Hiệu ứng trượt banner tự động ở sảnh chính mỗi 3 giây
-let currentSlide = 0;
-const slides = document.querySelectorAll('.banner-slide');
+// === QUẢN LÝ CHUNG SLIDER BANNER VÀ BACKGROUND HERO ===
+let currentBannerIndex = 0;
+const bannerSlides = document.querySelectorAll('.banner-slide');
+const heroBgSlides = document.querySelectorAll('.hero-bg-slide');
 
 function nextSlide() {
-    if (slides.length === 0) return;
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
+    // 1. Chạy slider cho Banner nhỏ bên trong sảnh chính
+    if (bannerSlides.length > 0) {
+        bannerSlides[currentBannerIndex].classList.remove('active');
+        currentBannerIndex = (currentBannerIndex + 1) % bannerSlides.length;
+        bannerSlides[currentBannerIndex].classList.add('active');
+    }
+
+    // 2. Chạy slider cho Ảnh nền Hero Background (xoay vòng bộ 6 ảnh BACKGROUND)
+    if (heroBgSlides.length > 0) {
+        let activeBgIndex = Array.from(heroBgSlides).findIndex(slide => slide.classList.contains('active'));
+        if (activeBgIndex !== -1) {
+            heroBgSlides[activeBgIndex].classList.remove('active');
+            let nextBgIndex = (activeBgIndex + 1) % heroBgSlides.length;
+            heroBgSlides[nextBgIndex].classList.add('active');
+        }
+    }
 }
 
-if (slides.length > 0) {
-    setInterval(nextSlide, 3000);
+// Kích hoạt vòng lặp chuyển slide tự động mỗi 4 giây
+if (bannerSlides.length > 0 || heroBgSlides.length > 0) {
+    setInterval(nextSlide, 4000);
 }
+
 
 // === CƠ SỞ DỮ LIỆU MẪU NÂNG CẤP CẦU THỦ THEO VỊ TRÍ ===
-// (Bạn có thể dễ dàng thay đổi đường dẫn ảnh vào các thư mục tương ứng trên máy)
 const upgradeDatabase = [
     {
         position: "CF",
         name: "Mẫu nâng cấp Tiền đạo cắm (CF - ST)",
         desc: "Build max tốc độ, sút xa và chọn vị trí",
-        image: "images/upgrades/cf_sample.jpg" // Hoặc link ảnh thực tế của bạn
+        image: "images/upgrades/cf_sample.jpg" 
     },
     {
         position: "CB",
@@ -63,7 +77,6 @@ function searchUpgradePosition() {
         return;
     }
 
-    // Lọc các mẫu phù hợp với từ khóa vị trí người chơi nhập
     const results = upgradeDatabase.filter(item => item.position.includes(query) || item.name.toUpperCase().includes(query));
 
     if (results.length === 0) {
@@ -76,7 +89,6 @@ function searchUpgradePosition() {
         return;
     }
 
-    // Hiển thị danh sách ảnh mẫu nâng cấp xổ ra
     let htmlContent = "";
     results.forEach(item => {
         htmlContent += `
@@ -101,7 +113,8 @@ function quickSelectPos(pos) {
     searchUpgradePosition();
 }
 
-// Xử lý bộ lọc tìm kiếm Acc theo Giá và Loại tài khoản
+
+// === XỬ LÝ BỘ LỌC TÌM KIẾM TÀI KHOẢN ACC ===
 function filterProducts() {
     const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
     const priceVal = document.getElementById('priceFilter').value;
@@ -134,7 +147,6 @@ function filterProducts() {
         }
 
         if (typeVal !== 'all') {
-            // Hỗ trợ check nếu acc thuộc nhiều loại (VD: "coin player")
             matchType = type.includes(typeVal);
         }
 
@@ -146,7 +158,8 @@ function filterProducts() {
     });
 }
 
-// Hàm chuyển đổi ảnh trên card sản phẩm chính
+
+// === HÀM TRƯỢT ẢNH TRỰC TIẾP TRÊN CARD SẢN PHẨM ===
 function changeCardSlide(accId, direction) {
     const sliderBox = document.getElementById('slider-' + accId);
     if (!sliderBox) return;
@@ -165,7 +178,8 @@ function changeCardSlide(accId, direction) {
     cardSlides[currentIndex].classList.add('active');
 }
 
-// === CÁC HÀM XỬ LÝ MODAL XEM BỘ SƯU TẬP ẢNH NGANG CHI TIẾT ===
+
+// === XỬ LÝ MODAL XEM BỘ SƯU TẬP ẢNH NGANG CHI TIẾT ===
 let currentGalleryImages = [];
 let currentGalleryIndex = 0;
 
@@ -203,6 +217,7 @@ function slideGallery(direction) {
     imgs[currentGalleryIndex].classList.add('active');
 }
 
+// Đóng modal khi bấm ra vùng nền tối bên ngoài
 window.onclick = function(event) {
     const modal = document.getElementById('imageModal');
     if (event.target === modal) {

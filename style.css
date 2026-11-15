@@ -1,13 +1,11 @@
 * {
     box-sizing: border-box;
-    scroll-behavior: smooth; /* Hiệu ứng cuộn trang mượt mà */
+    scroll-behavior: smooth;
 }
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(rgba(11, 15, 25, 0.9), rgba(11, 15, 25, 0.92)), url('images/backgrounddls.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: #0b0f19;
     color: #e2e8f0;
     margin: 0;
     padding: 0;
@@ -29,13 +27,74 @@ body {
     color: #38bdf8;
 }
 
-/* Hero Section & Banner Slider */
+/* ==========================================
+   HEADER & HIỆU ỨNG ẢNH NỀN TRƯỢT TOÀN MÀN HÌNH 
+   ================================---------- */
 .hero {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 58, 138, 0.85));
+    position: relative;
     text-align: center;
-    padding: 50px 20px;
-    border-bottom: 3px solid #38bdf8;
-    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1);
+    padding: 80px 20px;
+    border-bottom: 4px solid #38bdf8;
+    overflow: hidden;
+    background-color: #05070c;
+    min-height: 680px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Khung chứa ảnh nền trượt toàn màn hình */
+.hero-bg-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Lớp phủ màu mỏng nhẹ giúp giữ nguyên độ sáng và màu sắc rực rỡ của ảnh nền */
+.hero-bg-slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(11, 15, 25, 0.45) 0%, rgba(11, 15, 25, 0.82) 100%);
+    z-index: 2;
+}
+
+.hero-bg-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Phủ kín màn hình, giữ trọn vẹn chi tiết sắc nét của bộ ảnh 1080x1350 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 1.5s ease-in-out, transform 6s ease;
+}
+
+.hero-bg-slide.active {
+    opacity: 0.7; /* Sáng rõ, giữ đúng màu sắc và độ chi tiết của ảnh */
+    transform: scale(1);
+}
+
+/* Khu vực nội dung chữ và banner chính nổi bật trên nền */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(11, 15, 25, 0.75);
+    backdrop-filter: blur(12px); /* Hiệu ứng kính mờ cao cấp làm nổi bật text */
+    padding: 35px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
 .hero-banner-container {
@@ -76,7 +135,7 @@ body {
     color: #38bdf8;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
 }
 .subtitle {
     font-size: 1.15em;
@@ -121,7 +180,7 @@ body {
     font-size: 1.05em;
 }
 
-/* TÍNH NĂNG MỚI: MẪU NÂNG CẤP CẦU THỦ */
+/* MẪU NÂNG CẤP CẦU THỦ */
 .upgrade-guide-section {
     background-color: rgba(15, 23, 42, 0.9);
     padding: 50px 20px;
@@ -496,7 +555,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.88);
-    backdrop-filter: blur(5px); /* Hiệu ứng kính mờ nền sang trọng */
+    backdrop-filter: blur(5px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
